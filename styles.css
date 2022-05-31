@@ -1,0 +1,137 @@
+:root{
+    font-size: 15px;
+    --transparent-white: hsla(0, 0%, 100%, 0.75); /* paragraphs */
+    --very-light-gray: hsl(0, 0%, 95%); /*background, headings, buttons*/
+    transition: all .2s ease;
+}
+body{
+    width: 100vw;
+    height: auto;
+    margin: 0;
+    background-color: var(--very-light-gray);
+    display: grid;
+    place-items: center;
+}
+body > .container{
+    width: 60%;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+}
+body > .container > div{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    padding: 4rem;
+}
+body > .container > div > img{
+    width: 78px;
+    height: auto;
+    margin: 0 0 1rem 0;
+}
+body > .container > div > h1{
+    font-family: 'Big Shoulders Display', cursive;
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: var(--very-light-gray);
+}
+body > .container > div > p{
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.8em;
+    font-weight: 400;
+    color: var(--transparent-white);
+    width: 94%;
+}
+body > .container > div > button{
+    width: 12.2rem;
+    height: 4rem;
+    border-radius: 2rem;
+    border: none;
+    background-color: var(--very-light-gray);
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--txt-color);
+    margin: 6rem 0 0 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+body > .container > div > button::after{
+    content: 'Learn More';
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    background-color: var(--btn-after-bg);
+    color: var(--very-light-gray);
+    border: 2px solid var(--very-light-gray);
+    border-radius: inherit;
+    position: absolute;
+    box-sizing: border-box;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+body > .container > div > button:hover::after{
+    opacity: 1;
+}
+@media screen and (max-width: 480px) and (min-width: 360px) {
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    body > .container{
+        width: 90%;
+        flex-direction: column;
+        margin: 2rem 0 2rem 0;
+    }
+    body > .container > div > p{
+        width: 100%;
+    }
+    body > .container > div > button{
+        margin: 1.5rem 0 0 0;
+    }
+}
+@media screen and (max-width: 720px) and (min-width: 481px) {
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    body > .container{
+        width: 90%;
+        flex-direction: column;
+        margin: 2rem 0 2rem 0;
+    }
+    body > .container > div > p{
+        width: 100%;
+    }
+    body > .container > div > button{
+        margin: 1.5rem 0 0 0;
+    }
+}
+@media screen and (max-width: 1080px) and (min-width: 721px) {
+    body{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    body > .container{
+        width: 90%;
+        margin: 2rem 0 2rem 0;
+    }
+    body > .container > div{
+        padding: 3rem;
+    }
+    body > .container > div > p{
+        width: 95%;
+    }
+    body > .container > div > button{
+        margin: 1.5rem 0 0 0;
+    }
+}
