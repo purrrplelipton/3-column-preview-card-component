@@ -19,27 +19,64 @@ const Wrapper = styled.article`
   grid-template-columns: 1fr;
   border-radius: 1rem;
   overflow: hidden;
+  max-width: 72rem;
+
+  @media only screen and (min-width: 48rem) and (max-width: 63.9375rem) {
+    width: 66.66%;
+    margin-inline: auto;
+  }
+
+  @media only screen and (min-width: 64rem) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 const WrapperItem = styled.div`
   font-family: ${base};
+  /* font-size: 0.9375rem; */
   padding-inline: 2.625rem;
   padding-block: 3rem;
   background: ${(props) =>
     props.sedans ? b_orange : props.suvs ? d_cyan : vd_cyan};
+  display: grid;
+  gap: 2rem;
+  overflow: hidden;
+
+  @media only screen and (min-width: 48rem) {
+    font-size: 1.15rem;
+    padding-inline: 3.8rem;
+    padding-block: 4rem;
+    gap: 6rem;
+  }
+`;
+
+const InfoSec = styled.div`
+  display: grid;
   gap: 1.75rem;
+
+  @media only screen and (min-width: 48rem) {
+    gap: 2rem;
+  }
 `;
 
 const Icon = styled.img.attrs((props) => ({
   src: props.sedans ? sed_svg : props.suvs ? suv_svg : lux_svg,
   alt: props.alt || "an svg icon of a vehicle",
-}))``;
+}))`
+  @media only screen and (min-width: 48rem) {
+    width: 5rem;
+  }
+`;
 
 const Title = styled.h2`
   font-family: ${accent};
   font-size: 2.5rem;
   color: ${grey_95};
   text-transform: uppercase;
+
+  @media only screen and (min-width: 48rem) {
+    font-size: 3rem;
+  }
 `;
 
 const Description = styled.p`
@@ -51,7 +88,6 @@ const Button = styled.input.attrs((props) => ({
   type: props.type || "button",
   value: props.value || "Learn More",
 }))`
-  border: none;
   font: inherit;
   padding-block: 0.7625rem;
   padding-inline: 2.12rem;
@@ -59,11 +95,19 @@ const Button = styled.input.attrs((props) => ({
   border: 2px solid;
   color: ${(props) =>
     props.sedans ? b_orange : props.suvs ? d_cyan : vd_cyan};
-  &:hover {
+  outline: none;
+  transition: background 0.25s ease-out, color 0.2s ease-in;
+  &:hover,
+  &:focus {
+    cursor: pointer;
     background: ${(props) =>
       props.sedans ? b_orange : props.suvs ? d_cyan : vd_cyan};
     color: ${grey_95};
     border: 2px solid;
+  }
+
+  @media only screen and (min-width: 48rem) {
+    padding-block: 0.9rem;
   }
 `;
 
@@ -79,7 +123,9 @@ const Footer = styled.footer`
 const Link = styled.a`
   font-family: ${accent};
   color: hsl(228, 45%, 44%);
-  &:hover {
+  outline: none;
+  &:hover,
+  &:focus {
     text-decoration: none;
   }
 `;
@@ -97,30 +143,36 @@ const App = () => (
   >
     <Wrapper>
       <WrapperItem sedans>
-        <Icon sedans />
-        <Title>Sedans</Title>
-        <Description>
-          Choose a sedan for its affordability and excellent fuel economy. Ideal
-          for cruising in the city or on your next road trip.
-        </Description>
-        <Button />
+        <InfoSec>
+          <Icon sedans />
+          <Title>Sedans</Title>
+          <Description>
+            Choose a sedan for its affordability and excellent fuel economy.
+            Ideal for cruising in the city or on your next road trip.
+          </Description>
+        </InfoSec>
+        <Button sedans />
       </WrapperItem>
       <WrapperItem suvs>
-        <Icon suvs />
-        <Title>SUVs</Title>
-        <Description>
-          Take an SUV for its spacious interior, power, and versatility. Perfect
-          for your next family vacation and off-road adventures.
-        </Description>
-        <Button />
+        <InfoSec>
+          <Icon suvs />
+          <Title>SUVs</Title>
+          <Description>
+            Take an SUV for its spacious interior, power, and versatility.
+            Perfect for your next family vacation and off-road adventures.
+          </Description>
+        </InfoSec>
+        <Button suvs />
       </WrapperItem>
       <WrapperItem>
-        <Icon />
-        <Title>Luxury</Title>
-        <Description>
-          Cruise in the best car brands without the bloated prices. Enjoy the
-          enhanced comfort of a luxury rental and arrive in style.
-        </Description>
+        <InfoSec>
+          <Icon />
+          <Title>Luxury</Title>
+          <Description>
+            Cruise in the best car brands without the bloated prices. Enjoy the
+            enhanced comfort of a luxury rental and arrive in style.
+          </Description>
+        </InfoSec>
         <Button />
       </WrapperItem>
     </Wrapper>
