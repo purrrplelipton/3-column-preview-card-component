@@ -14,6 +14,15 @@ const grey_95 = `hsl(0, 0%, 95%)`;
 const base = `"Lexend Deca", sans-serif`;
 const accent = `"Big Shoulders Display", cursive`;
 
+const DirectRootChild = styled.div`
+  background: ${grey_95};
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  padding-inline: 1.5rem;
+  padding-block: 4.5rem;
+`;
+
 const Wrapper = styled.article`
   display: grid;
   grid-template-columns: 1fr;
@@ -39,6 +48,7 @@ const WrapperItem = styled.div`
   background: ${(props) =>
     props.sedans ? b_orange : props.suvs ? d_cyan : vd_cyan};
   display: grid;
+  justify-items: left;
   gap: 2rem;
   overflow: hidden;
 
@@ -84,22 +94,25 @@ const Description = styled.p`
   line-height: 1.75;
 `;
 
-const Button = styled.input.attrs((props) => ({
-  type: props.type || "button",
-  value: props.value || "Learn More",
+const Button = styled.a.attrs((props) => ({
+  href: props.sedans
+    ? "https://en.wikipedia.org/wiki/Sedan_(automobile)"
+    : props.suvs
+    ? "https://en.wikipedia.org/wiki/Sport_utility_vehicle"
+    : "https://en.wikipedia.org/wiki/Category:Luxury_vehicles",
 }))`
-  font: inherit;
-  padding-block: 0.7625rem;
-  padding-inline: 2.12rem;
-  border-radius: 999rem;
-  border: 2px solid;
+  background: ${grey_95};
   color: ${(props) =>
     props.sedans ? b_orange : props.suvs ? d_cyan : vd_cyan};
+  text-decoration: none;
+  padding-block: 0.8rem;
+  padding-inline: 2.125rem;
+  border-radius: 999rem;
+  border: 2px solid;
   outline: none;
   transition: background 0.25s ease-out, color 0.2s ease-in;
   &:hover,
   &:focus {
-    cursor: pointer;
     background: ${(props) =>
       props.sedans ? b_orange : props.suvs ? d_cyan : vd_cyan};
     color: ${grey_95};
@@ -131,16 +144,7 @@ const Link = styled.a`
 `;
 
 const App = () => (
-  <div
-    style={{
-      background: grey_95,
-      minHeight: "100vh",
-      display: "grid",
-      placeContent: "center",
-      paddingInline: "1.5rem",
-      paddingBlock: "4.5rem",
-    }}
-  >
+  <DirectRootChild>
     <Wrapper>
       <WrapperItem sedans>
         <InfoSec>
@@ -151,7 +155,7 @@ const App = () => (
             Ideal for cruising in the city or on your next road trip.
           </Description>
         </InfoSec>
-        <Button sedans />
+        <Button sedans>Learn More</Button>
       </WrapperItem>
       <WrapperItem suvs>
         <InfoSec>
@@ -162,7 +166,7 @@ const App = () => (
             Perfect for your next family vacation and off-road adventures.
           </Description>
         </InfoSec>
-        <Button suvs />
+        <Button suvs>Learn More</Button>
       </WrapperItem>
       <WrapperItem>
         <InfoSec>
@@ -173,7 +177,7 @@ const App = () => (
             enhanced comfort of a luxury rental and arrive in style.
           </Description>
         </InfoSec>
-        <Button />
+        <Button>Learn More</Button>
       </WrapperItem>
     </Wrapper>
 
@@ -188,7 +192,7 @@ const App = () => (
       </Link>
       .
     </Footer>
-  </div>
+  </DirectRootChild>
 );
 
 export default App;
