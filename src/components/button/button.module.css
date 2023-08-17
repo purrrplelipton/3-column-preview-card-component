@@ -1,0 +1,36 @@
+.btn-base {
+  line-height: 0.8;
+  color: var(--default-clr);
+  background-color: var(--very-light-gray);
+  border: 0;
+  padding: 1.125em 2em;
+  border-radius: 1.875em;
+  margin-top: 2em;
+  position: relative;
+}
+
+.btn-base::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+  border: 1px solid transparent;
+}
+
+.btn-base:active {
+  color: var(--very-light-gray);
+  background-color: var(--default-color, transparent);
+}
+
+.btn-base:active::after {
+  border-color: var(--very-light-gray);
+}
+
+@media screen and (min-width: 1024px) {
+  .btn-base {
+    margin-top: 6em;
+  }
+}
